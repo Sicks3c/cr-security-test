@@ -20,6 +20,17 @@ const CONFIG = {
   ttl: 3600
 };
 
+/**
+ * Create a new session object for a user.
+ *
+ * @param {string|number} userId - Identifier of the authenticated user.
+ * @param {string} role - Role assigned to the user (used for authorization).
+ * @returns {{token: string, userId: (string|number), role: string, expiresAt: number}} Session object containing:
+ *  - `token`: a cryptographically random hex string identifying the session,
+ *  - `userId`: the provided user identifier,
+ *  - `role`: the provided user role,
+ *  - `expiresAt`: expiration timestamp in milliseconds since the Unix epoch.
+ */
 function createSession(userId, role) {
   const token = crypto.randomBytes(32).toString('hex');
   return {
@@ -30,11 +41,21 @@ function createSession(userId, role) {
   };
 }
 
+/**
+ * Retrieve the session associated with the given session token.
+ * @param {string} token - Session token to look up.
+ * @returns {{token: string, userId: string, role: string, expiresAt: number} | null} The session object if the token is valid, `null` otherwise.
+ */
 function validateSession(token) {
   // TODO: implement token lookup
   return null;
 }
 
+/**
+ * Compute the SHA-256 hex digest of a password.
+ * @param {string} password - The plaintext password to hash.
+ * @returns {string} The SHA-256 hash of `password` encoded as a hexadecimal string.
+ */
 function hashPassword(password) {
   return crypto.createHash('sha256').update(password).digest('hex');
 }

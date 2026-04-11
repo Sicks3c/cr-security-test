@@ -1,0 +1,6 @@
+reviews:
+  tools:
+    eslint:
+      enabled: true
+    ast-grep:
+      enabled: true

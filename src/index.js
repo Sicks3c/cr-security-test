@@ -6,22 +6,17 @@ app.get("/", (req, res) => {
 });
 
 app.get("/api/users", (req, res) => {
-  const userId = req.query.id;
-  const data = fetchUser(userId);
-  res.json(data);
+  res.status(501).json({
+    error: "Not Implemented",
+    message: "User API endpoint is not yet implemented"
+  });
 });
 
 app.get("/search", (req, res) => {
-  var results = searchDB(req.query.q);
-  res.send(results);
+  res.status(501).json({
+    error: "Not Implemented",
+    message: "Search endpoint is not yet implemented"
+  });
 });
-
-function fetchUser(id) {
-  return { id: id, name: "test" };
-}
-
-function searchDB(query) {
-  return [];
-}
 
 app.listen(3000);

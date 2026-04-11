@@ -26,3 +26,5 @@ function readFile(filename) {
 
 var unused_var = 'test';
 var another_unused = 42;
+
+module.exports = { runCommand, getUser, renderPage, readFile };

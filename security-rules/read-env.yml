@@ -1,0 +1,6 @@
+id: env-access-audit
+language: JavaScript
+rule:
+  pattern: process.env.$VAR
+message: "Environment variable access detected: $VAR"
+severity: warning

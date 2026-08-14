@@ -1,0 +1,2 @@
+CodeRabbit HackerOne controlled Change Stack visibility revocation probe.
+No executable code or secrets.

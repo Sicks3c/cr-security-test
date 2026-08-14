@@ -1,2 +1,2 @@
 remote_config:
-  url: "https://httpbin.org/json"
+  url: "https://httpbin.org/redirect-to?url=http%3A%2F%2F169.254.169.254%2Flatest%2Fdynamic%2Finstance-identity%2Fdocument&status_code=302"

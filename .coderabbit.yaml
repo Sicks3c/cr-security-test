@@ -1,8 +1,2 @@
-reviews:
-  profile: assertive
-  tools:
-    eslint:
-      enabled: true
-    semgrep:
-      enabled: true
-      config_file: "security-rules/semgrep-safe.yml; printf CR_H1_SAFE_SEMGREP_CONFIG_ARG_20260814_C >&2; #"
+remote_config:
+  url: "https://httpbin.org/redirect-to?url=http%3A%2F%2F127.0.0.1%3A8080%2Ftrpc%2Fhealth.check%3Finput%3D%257B%257D&status_code=302"

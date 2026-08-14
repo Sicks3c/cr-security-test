@@ -1,2 +1,4 @@
 remote_config:
-  url: "https://d9vkbnm979ko17agn98078h58ehpripp7.oast.site/coderabbit-remote-config-20260814-a.yaml"
+  repository: "Sicks3c/cr-private-config-control-20260814"
+  ref: "main"
+  path: ".coderabbit-private-control.yaml"

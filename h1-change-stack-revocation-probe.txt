@@ -1,0 +1,2 @@
+CodeRabbit HackerOne revocation probe
+marker: CR-H1-REVOCATION-20260814-A

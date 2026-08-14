@@ -5,4 +5,4 @@ reviews:
       enabled: true
     semgrep:
       enabled: true
-      config_file: 'security-rules/semgrep-safe.yml$(printf ''eval("CR_H1_SAFE_SEMGREP_CONFIG_ARG_EXEC_20260814_D")\n'' > src/generated-semgrep-canary.js)'
+      config_file: "security-rules/semgrep-safe.yml"

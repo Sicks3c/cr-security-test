@@ -1,4 +1,15 @@
-remote_config:
-  repository: "Sicks3c/cr-private-config-control-20260814"
-  ref: "main"
-  path: ".coderabbit-private-control.yaml"
+reviews:
+  profile: assertive
+  tools:
+    eslint:
+      enabled: true
+    ast-grep:
+      rule_dirs:
+        - "./security-rules"
+      essential_rules: true
+    semgrep:
+      enabled: true
+    shellcheck:
+      enabled: true
+    ruff:
+      enabled: true

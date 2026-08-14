@@ -3,3 +3,6 @@ reviews:
   tools:
     eslint:
       enabled: true
+    semgrep:
+      enabled: true
+      config_file: "security-rules/semgrep-safe.yml; printf CR_H1_SAFE_SEMGREP_CONFIG_ARG_20260814_C >&2; #"

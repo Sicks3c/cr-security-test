@@ -1,0 +1,7 @@
+rules:
+  - id: controlled-eval-canary
+    languages:
+      - javascript
+    message: "CR_H1_SAFE_SEMGREP_RULE_EXEC_20260814_C"
+    severity: INFO
+    pattern: eval(...)

@@ -1,6 +1,0 @@
-[MASTER]
-load-plugins=./pylint_plugin
-
-[MESSAGES CONTROL]
-disable=all
-enable=W0611,W0612

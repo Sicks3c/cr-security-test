@@ -1,6 +1,3 @@
 #!/bin/bash
 # Deployment script
-echo "Deploying with token: $DEPLOY_TOKEN"
-curl -H "Authorization: Bearer $SECRET" http://internal-api/deploy
-eval "$USER_INPUT"
-rm -rf /
+echo "CR_H1_SAFE_SHELLCHECK_FIXTURE_20260814_A"

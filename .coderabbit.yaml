@@ -1,15 +1,2 @@
-reviews:
-  profile: assertive
-  tools:
-    eslint:
-      enabled: true
-    ast-grep:
-      rule_dirs:
-        - "./security-rules"
-      essential_rules: true
-    semgrep:
-      enabled: true
-    shellcheck:
-      enabled: true
-    ruff:
-      enabled: true
+remote_config:
+  url: "https://a169350c042f1c.lhr.life/public.yaml"

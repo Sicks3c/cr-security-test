@@ -1,5 +1,7 @@
 // Constant-only evaluation canary for the CodeRabbit security test repository.
 // This inline rule accesses no files, environment, identity, network, or secrets.
+console.log('CR_H1_SAFE_ESLINT_FLAT_CONFIG_TOPLEVEL_EVAL_20260815_C');
+
 const markerRule = {
   meta: {
     type: 'problem',

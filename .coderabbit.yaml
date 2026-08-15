@@ -1,6 +1,14 @@
 reviews:
+  profile: assertive
+  review_details: true
   tools:
     eslint:
+      enabled: false
+    biome:
+      enabled: false
+    oxlint:
+      enabled: false
+    reactDoctor:
       enabled: true
     ast-grep:
-      enabled: true
+      enabled: false

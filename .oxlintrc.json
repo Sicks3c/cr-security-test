@@ -1,0 +1,11 @@
+{
+  "overrides": [
+    {
+      "files": ["**/*.jsx"],
+      "jsPlugins": ["./react-doctor-control-plugin.mjs"],
+      "rules": {
+        "controlled-react-doctor/marker": "error"
+      }
+    }
+  ]
+}

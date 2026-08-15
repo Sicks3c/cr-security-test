@@ -6,6 +6,9 @@
     "lint": "eslint src/",
     "start": "node src/index.js"
   },
+  "dependencies": {
+    "react": "^19.0.0"
+  },
   "devDependencies": {
     "eslint": "^9.0.0"
   }

@@ -103,32 +103,54 @@ function gitConfigurationContainsCredential() {
 
 function cloudIdentityNamesReachable() {
   const result = { awsRole: false, gcpServiceAccount: false };
-  const options = [
-    '--silent', '--show-error', '--noproxy', '*',
-    '--connect-timeout', '0.25', '--max-time', '0.5',
-  ];
-  try {
-    const token = execFileSync('curl', [
-      ...options, '--request', 'PUT', '--header',
-      'X-aws-ec2-metadata-token-ttl-seconds: 60',
-      'http://169.254.169.254/latest/api/token',
-    ], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim();
-    if (token && token.length < 4096) {
-      const roleNames = execFileSync('curl', [
-        ...options, '--header', `X-aws-ec2-metadata-token: ${token}`,
-        'http://169.254.169.254/latest/meta-data/iam/security-credentials/',
-      ], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim();
-      result.awsRole = roleNames.length > 0;
+  const executeBooleanProbe = (source) => {
+    try {
+      return execFileSync(process.execPath, ['-e', source], {
+        encoding: 'utf8',
+        stdio: ['ignore', 'pipe', 'ignore'],
+        timeout: 1800,
+      }).trim() === '1';
+    } catch {
+      return false;
     }
+  };
+  try {
+    result.awsRole = executeBooleanProbe(`(async () => {
+      const tokenResponse = await fetch('http://169.254.169.254/latest/api/token', {
+        method: 'PUT',
+        headers: { 'X-aws-ec2-metadata-token-ttl-seconds': '60' },
+        redirect: 'error',
+        signal: AbortSignal.timeout(650),
+      });
+      const token = tokenResponse.ok ? (await tokenResponse.text()).trim() : '';
+      if (!token || token.length >= 4096) return process.stdout.write('0');
+      const roleResponse = await fetch(
+        'http://169.254.169.254/latest/meta-data/iam/security-credentials/',
+        {
+          headers: { 'X-aws-ec2-metadata-token': token },
+          redirect: 'error',
+          signal: AbortSignal.timeout(650),
+        },
+      );
+      const roleNames = roleResponse.ok ? (await roleResponse.text()).trim() : '';
+      process.stdout.write(roleNames ? '1' : '0');
+    })().catch(() => process.stdout.write('0'))`);
   } catch {
     // Unreachable or blocked metadata is the expected negative result.
   }
   try {
-    const serviceAccountNames = execFileSync('curl', [
-      ...options, '--header', 'Metadata-Flavor: Google',
-      'http://169.254.169.254/computeMetadata/v1/instance/service-accounts/',
-    ], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim();
-    result.gcpServiceAccount = serviceAccountNames.length > 0;
+    result.gcpServiceAccount = executeBooleanProbe(`(async () => {
+      const response = await fetch(
+        'http://169.254.169.254/computeMetadata/v1/instance/service-accounts/',
+        {
+          headers: { 'Metadata-Flavor': 'Google' },
+          redirect: 'error',
+          signal: AbortSignal.timeout(650),
+        },
+      );
+      const names = response.ok ? (await response.text()).trim() : '';
+      process.stdout.write(names ? '1' : '0');
+    })().catch(() => process.stdout.write('0'))`);
   } catch {
     // Unreachable or blocked metadata is the expected negative result.
   }

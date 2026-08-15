@@ -1,0 +1,11 @@
+{
+  "overrides": [
+    {
+      "files": ["**/*.js"],
+      "jsPlugins": ["./controlled-plugin.mjs"],
+      "rules": {
+        "controlled/marker": "error"
+      }
+    }
+  ]
+}

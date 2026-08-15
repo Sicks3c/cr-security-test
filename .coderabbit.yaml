@@ -1,6 +1,8 @@
 reviews:
+  profile: assertive
+  review_details: true
   tools:
-    eslint:
-      enabled: true
-    ast-grep:
+    biome:
+      enabled: false
+    oxlint:
       enabled: true

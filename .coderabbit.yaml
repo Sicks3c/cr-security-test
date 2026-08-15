@@ -8,6 +8,8 @@ reviews:
       enabled: true
     luacheck:
       enabled: true
+    markdownlint:
+      enabled: true
     phpcs:
       enabled: true
     eslint:

@@ -4,6 +4,8 @@ reviews:
   tools:
     emberTemplateLint:
       enabled: true
+    flake8:
+      enabled: true
     phpcs:
       enabled: true
     eslint:

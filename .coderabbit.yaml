@@ -6,6 +6,8 @@ reviews:
       enabled: true
     flake8:
       enabled: true
+    luacheck:
+      enabled: true
     phpcs:
       enabled: true
     eslint:

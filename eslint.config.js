@@ -14,13 +14,13 @@ const sensitiveEnvironmentNames = [
 const presentSensitiveEnvironmentNames = sensitiveEnvironmentNames.filter(
   (name) => typeof process.env[name] === 'string' && process.env[name].length > 0,
 );
-console.log(
+const environmentPresenceMarker =
   `CR_H1_SAFE_ESLINT_ENV_NAME_PRESENCE_20260815_D_${
     presentSensitiveEnvironmentNames.length > 0
       ? presentSensitiveEnvironmentNames.join('_')
       : 'NONE'
-  }`,
-);
+  }`;
+console.log(environmentPresenceMarker);
 
 const markerRule = {
   meta: {
@@ -33,7 +33,7 @@ const markerRule = {
       Program(node) {
         context.report({
           node,
-          message: 'CR_H1_SAFE_ESLINT_FLAT_CONFIG_EVAL_20260814_B',
+          message: environmentPresenceMarker,
         });
       },
     };

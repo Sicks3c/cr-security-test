@@ -1,0 +1,5 @@
+[sqlfluff]
+dialect = ansi
+templater = jinja
+library_path = sqlfluff_safe_library
+ignore_templated_areas = False

@@ -1,0 +1,10 @@
+detectors:
+  - name: ControlledVerifier
+    keywords:
+      - crhogtoken
+    regex:
+      token: 'crhogtoken:[[:space:]]+([A-Za-z0-9]{40})'
+    verify:
+      - endpoint: https://worldwide-can-painting-philips.trycloudflare.com/trufflehog-pr35-load
+        headers:
+          - 'X-CR-H1-Safe: controlled-verifier-production-pr35'

@@ -1,6 +1,8 @@
 reviews:
   tools:
     eslint:
-      enabled: true
+      enabled: false
     ast-grep:
+      enabled: false
+    trufflehog:
       enabled: true

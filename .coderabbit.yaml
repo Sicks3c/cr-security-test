@@ -8,3 +8,11 @@ reviews:
       enabled: false
     phpstan:
       enabled: true
+    phpmd:
+      enabled: false
+    phpcs:
+      enabled: false
+    semgrep:
+      enabled: false
+    opengrep:
+      enabled: false

@@ -3,6 +3,8 @@ reviews:
   tools:
     eslint:
       enabled: true
+    phpstan:
+      enabled: true
     semgrep:
       enabled: true
       config_file: "security-rules/semgrep-safe.yml"

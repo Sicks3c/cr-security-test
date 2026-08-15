@@ -1,0 +1,7 @@
+includes:
+  - phpstan-extra.neon
+
+parameters:
+  level: 0
+  paths:
+    - src

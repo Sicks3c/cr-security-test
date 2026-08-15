@@ -2,12 +2,6 @@ reviews:
   profile: assertive
   review_details: true
   tools:
-    eslint:
-      enabled: true
-    phpstan:
-      enabled: true
-    sqlfluff:
-      enabled: true
     semgrep:
       enabled: true
       config_file: "security-rules/semgrep-safe.yml"

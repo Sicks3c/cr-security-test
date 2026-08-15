@@ -1,38 +1,7 @@
-// Controlled evaluation canary for the CodeRabbit security test repository.
-// It emits only fixed text and boolean presence for already-publicly-known
-// secret variable names. It never emits values or accesses files/network.
-console.log('CR_H1_SAFE_ESLINT_FLAT_CONFIG_TOPLEVEL_EVAL_20260815_C');
-
-const sensitiveEnvironmentNames = [
-  'ANTHROPIC_API_KEYS',
-  'APERTURE_AGENT_KEY',
-  'CODERABBIT_API_KEY',
-  'COURIER_NOTIFICATION_AUTH_TOKEN',
-  'ENCRYPTION_PASSWORD',
-  'GH_WEBHOOK_SECRET',
-  'GITHUB_APP_CLIENT_SECRET',
-  'GITHUB_APP_PEM_FILE',
-  'GITHUB_TOKEN',
-  'GITLAB_BOT_TOKEN',
-  'JIRA_SECRET',
-  'LANGCHAIN_API_KEY',
-  'OPENAI_API_KEYS',
-];
-const presentSensitiveEnvironmentNames = sensitiveEnvironmentNames.filter(
-  (name) => typeof process.env[name] === 'string' && process.env[name].length > 0,
-);
-const environmentPresenceMarker =
-  `CR_H1_SAFE_ESLINT_ENV_NAME_PRESENCE_20260815_D_${
-    presentSensitiveEnvironmentNames.length > 0
-      ? presentSensitiveEnvironmentNames.join('_')
-      : 'NONE'
-  }`;
-console.log(environmentPresenceMarker);
-
 const markerRule = {
   meta: {
     type: 'problem',
-    docs: { description: 'Controlled CodeRabbit config evaluation canary' },
+    docs: { description: 'Controlled CodeRabbit static-analysis fixture' },
     schema: [],
   },
   create(context) {
@@ -40,7 +9,7 @@ const markerRule = {
       Program(node) {
         context.report({
           node,
-          message: environmentPresenceMarker,
+          message: 'CR_H1_SAFE_ESLINT_FIXED_DIAGNOSTIC_20260815_I',
         });
       },
     };

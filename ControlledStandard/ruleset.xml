@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<ruleset name="ControlledStandard" namespace="ControlledStandard">
+    <description>Controlled custom sniff for analyzer-boundary validation.</description>
+    <rule ref="ControlledStandard.Safe.Boundary"/>
+</ruleset>

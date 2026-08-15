@@ -1,6 +1,8 @@
 reviews:
+  profile: assertive
+  review_details: true
   tools:
-    eslint:
+    flake8:
       enabled: true
-    ast-grep:
+    phpcs:
       enabled: true

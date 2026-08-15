@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<ruleset name="ControlledBoundaryStandard">
+    <description>Controlled PHP_CodeSniffer analyzer-boundary check.</description>
+    <file>src/phpcs_boundary.php</file>
+    <rule ref="./ControlledStandard"/>
+</ruleset>

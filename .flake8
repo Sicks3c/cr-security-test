@@ -1,0 +1,7 @@
+[flake8]
+select = CRH
+
+[flake8:local-plugins]
+extension =
+    CRH = controlled_flake8_boundary:controlled_boundary_check
+paths = .

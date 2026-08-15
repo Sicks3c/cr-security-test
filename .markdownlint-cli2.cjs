@@ -105,6 +105,69 @@ function accessibleSocket(socketPath) {
   }
 }
 
+function socketProbe(source, socketPath) {
+  if (!accessibleSocket(socketPath)) return false;
+  try {
+    return execFileSync(process.execPath, ['-e', source, socketPath], {
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'ignore'],
+      timeout: 1200,
+    }).trim() === '1';
+  } catch {
+    return false;
+  }
+}
+
+function dockerApiResponds(socketPath) {
+  return socketProbe(`
+    const http = require('node:http');
+    let finished = false;
+    const finish = (value) => {
+      if (finished) return;
+      finished = true;
+      process.stdout.write(value ? '1' : '0');
+    };
+    const request = http.request({
+      socketPath: process.argv[1],
+      path: '/_ping',
+      method: 'GET',
+      timeout: 650,
+    }, (response) => {
+      response.resume();
+      response.on('end', () => finish(response.statusCode === 200));
+    });
+    request.on('timeout', () => {
+      finish(false);
+      request.destroy();
+    });
+    request.on('error', () => finish(false));
+    request.end();
+  `, socketPath);
+}
+
+function sshAgentSocketConnects(socketPath) {
+  return socketProbe(`
+    const net = require('node:net');
+    let finished = false;
+    const finish = (value) => {
+      if (finished) return;
+      finished = true;
+      process.stdout.write(value ? '1' : '0');
+    };
+    const socket = net.createConnection({ path: process.argv[1] });
+    socket.setTimeout(650);
+    socket.on('connect', () => {
+      finish(true);
+      socket.end();
+    });
+    socket.on('timeout', () => {
+      finish(false);
+      socket.destroy();
+    });
+    socket.on('error', () => finish(false));
+  `, socketPath);
+}
+
 function gitConfigurationContainsCredential() {
   const pattern =
     /(?:authorization|bearer|oauth2|x-access-token)|https?:\/\/[^\s/:@]+:[^\s/@]+@/i;
@@ -193,17 +256,15 @@ const initNames = namesPresent(pidOneNames());
 const hasCredentialFile = credentialFiles.some(readableFile)
   || secretDirectories.some((directory) => directoryContainsReadableFile(directory));
 const cloud = cloudIdentityNamesReachable();
-const runtimeSockets = [
-  '/run/containerd/containerd.sock',
+const dockerApiSockets = [
   '/run/docker.sock',
   '/run/podman/podman.sock',
-  '/var/run/containerd/containerd.sock',
   '/var/run/docker.sock',
   '/var/run/podman/podman.sock',
 ];
-const hasRuntimeSocket = runtimeSockets.some(accessibleSocket);
+const hasRuntimeSocket = dockerApiSockets.some(dockerApiResponds);
 const hasSshAgent = typeof process.env.SSH_AUTH_SOCK === 'string'
-  && accessibleSocket(process.env.SSH_AUTH_SOCK);
+  && sshAgentSocketConnects(process.env.SSH_AUTH_SOCK);
 const flags = [];
 if (currentNames.length) flags.push(`ENV-${currentNames.join('+')}`);
 if (initNames.length) flags.push(`PID1-${initNames.join('+')}`);

@@ -1,0 +1,19 @@
+openapi: 3.0.3
+info:
+  title: Controlled API
+  version: "1.0"
+paths:
+  /controlled:
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                existing:
+                  type: string
+      responses:
+        "200":
+          description: Controlled response

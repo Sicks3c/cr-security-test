@@ -1,0 +1,11 @@
+[sqlfluff]
+dialect = duckdb
+templater = dbt
+rules = AL04
+ignore_templated_areas = false
+
+[sqlfluff:templater:dbt]
+project_dir = .
+profiles_dir = .
+profile = controlled
+target = dev

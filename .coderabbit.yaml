@@ -1,5 +1,9 @@
 reviews:
+  profile: assertive
+  review_details: true
   tools:
+    sqlfluff:
+      enabled: true
     eslint:
       enabled: true
     ast-grep:

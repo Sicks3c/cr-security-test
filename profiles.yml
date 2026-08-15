@@ -1,0 +1,7 @@
+controlled:
+  outputs:
+    dev:
+      type: duckdb
+      path: ":memory:"
+      threads: 1
+  target: dev

@@ -13,8 +13,8 @@ const { dirname, isAbsolute, join, resolve } = require('node:path');
 
 const credentialNames = [
   'ANTHROPIC_API_KEYS', 'APERTURE_AGENT_KEY', 'AWS_ACCESS_KEY_ID',
-  'AWS_SECRET_ACCESS_KEY', 'AWS_SESSION_TOKEN', 'AZURE_CLIENT_ID',
-  'AZURE_CLIENT_SECRET', 'AZURE_TENANT_ID', 'CI_JOB_TOKEN',
+  'AWS_SECRET_ACCESS_KEY', 'AWS_SESSION_TOKEN', 'AZURE_CLIENT_SECRET',
+  'CI_JOB_TOKEN',
   'CODERABBIT_API_KEY', 'CODECOV_TOKEN', 'COMPOSER_AUTH',
   'COURIER_NOTIFICATION_AUTH_TOKEN', 'DATADOG_API_KEY', 'DD_API_KEY',
   'DOCKER_AUTH_CONFIG', 'ENCRYPTION_PASSWORD', 'GCP_SERVICE_ACCOUNT_KEY',
@@ -58,7 +58,11 @@ function directoryContainsReadableFile(directory, depth = 2) {
   try {
     for (const entry of readdirSync(directory, { withFileTypes: true })) {
       const child = join(directory, entry.name);
-      if (entry.isFile() && readableFile(child)) return true;
+      if (
+        entry.isFile()
+        && /(?:auth|credential|dockerconfig|key|password|secret|token)/i.test(entry.name)
+        && readableFile(child)
+      ) return true;
       if (entry.isDirectory() && depth > 0 && directoryContainsReadableFile(child, depth - 1)) {
         return true;
       }

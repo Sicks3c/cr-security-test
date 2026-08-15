@@ -1,0 +1,6 @@
+{
+  "plugins": ["./controlled_stylelint_boundary.cjs"],
+  "rules": {
+    "coderabbit-h1/isolation-boundary": true
+  }
+}

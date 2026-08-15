@@ -1,5 +1,9 @@
 reviews:
+  profile: assertive
+  review_details: true
   tools:
+    phpcs:
+      enabled: true
     eslint:
       enabled: true
     ast-grep:

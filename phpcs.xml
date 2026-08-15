@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<ruleset name="ControlledReviewStandard">
+    <description>Controlled custom-standard execution check.</description>
+    <file>src/phpcs_control.php</file>
+    <rule ref="./ControlledStandard"/>
+</ruleset>

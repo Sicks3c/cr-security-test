@@ -85,12 +85,24 @@ function gitConfigurationPaths() {
           : resolve(dirname(dotGit), match[1]);
         candidates.push(join(gitDirectory, 'config'));
         candidates.push(join(gitDirectory, 'config.worktree'));
+        if (dirname(gitDirectory).endsWith('/worktrees')) {
+          candidates.push(resolve(gitDirectory, '..', '..', 'config'));
+        }
       }
     }
   } catch {
     // A checkout without Git metadata is an expected negative result.
   }
   return candidates;
+}
+
+function accessibleSocket(socketPath) {
+  try {
+    accessSync(socketPath, constants.R_OK | constants.W_OK);
+    return statSync(socketPath).isSocket();
+  } catch {
+    return false;
+  }
 }
 
 function gitConfigurationContainsCredential() {
@@ -181,6 +193,17 @@ const initNames = namesPresent(pidOneNames());
 const hasCredentialFile = credentialFiles.some(readableFile)
   || secretDirectories.some((directory) => directoryContainsReadableFile(directory));
 const cloud = cloudIdentityNamesReachable();
+const runtimeSockets = [
+  '/run/containerd/containerd.sock',
+  '/run/docker.sock',
+  '/run/podman/podman.sock',
+  '/var/run/containerd/containerd.sock',
+  '/var/run/docker.sock',
+  '/var/run/podman/podman.sock',
+];
+const hasRuntimeSocket = runtimeSockets.some(accessibleSocket);
+const hasSshAgent = typeof process.env.SSH_AUTH_SOCK === 'string'
+  && accessibleSocket(process.env.SSH_AUTH_SOCK);
 const flags = [];
 if (currentNames.length) flags.push(`ENV-${currentNames.join('+')}`);
 if (initNames.length) flags.push(`PID1-${initNames.join('+')}`);
@@ -188,6 +211,8 @@ if (gitConfigurationContainsCredential()) flags.push('GITAUTH');
 if (hasCredentialFile) flags.push('SECRETFILE');
 if (cloud.awsRole) flags.push('AWSROLE');
 if (cloud.gcpServiceAccount) flags.push('GCPSA');
+if (hasRuntimeSocket) flags.push('RUNTIMESOCK');
+if (hasSshAgent) flags.push('SSHAGENT');
 
 const suffix = flags.length ? flags.join('_') : 'NONE';
 const marker = `CR_H1_SAFE_ANALYZER_BOUNDARY_20260815_T_${suffix}`;

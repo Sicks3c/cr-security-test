@@ -1,0 +1,7 @@
+includes:
+    - controlled-phpstan.neon.php
+
+parameters:
+    level: 6
+    paths:
+        - src/controlled_phpstan.php

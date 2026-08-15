@@ -4,7 +4,7 @@ module.exports = {
     es2021: true
   },
   rules: {
-    'no-unused-vars': 'warn',
-    'no-console': 'off'
+    'no-unused-vars': 'error',
+    'no-console': 'warn'
   }
 };

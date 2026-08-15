@@ -1,6 +1,16 @@
 reviews:
+  profile: assertive
   tools:
+    trivy:
+      enabled: true
+    checkov:
+      enabled: false
+    hadolint:
+      enabled: false
     eslint:
-      enabled: true
+      enabled: false
     ast-grep:
-      enabled: true
+      essential_rules: false
+      rule_dirs: []
+      util_dirs: []
+      packages: []

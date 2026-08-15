@@ -10,10 +10,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                existing:
-                  type: string
+              $ref: "https://drawn-wendy-limitations-quick.trycloudflare.com/pr28-schema.yaml#/MarkerSchema"
       responses:
         "200":
           description: Controlled response

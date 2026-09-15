@@ -1,8 +1,12 @@
-const express = require('express');
-const app = express();
+var unused1 = "hello"
+var unused2 = 42
 
-app.get('/', (req, res) => {
-  res.send('Hello World');
-});
+function greet(name) {
+  var greeting = "Hello " + name
+  console.log(greeting)
+  return greeting
+}
 
-app.listen(3000);
+var result = greet("world")
+console.log(result)
+

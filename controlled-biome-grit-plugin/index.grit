@@ -1,0 +1,5 @@
+language js
+
+pattern controlled_biome_boundary_check() {
+    `console.log($args)` => `// CR_H1_SAFE_BIOME_GRIT_BOUNDARY_PR38: $args`
+}

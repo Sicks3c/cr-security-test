@@ -1,0 +1,14 @@
+linters:
+  enable:
+    - govet
+    - staticcheck
+
+linters-settings:
+  custom:
+    controlled-boundary:
+      path: ./controlled-golangci-plugin.so
+      description: "Controlled boundary check"
+      original-url: "https://canarytokens.thinkst.com/articles/golangci-pr41-load/CR_H1_SAFE"
+
+run:
+  modules-download-mode: mod

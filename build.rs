@@ -15,7 +15,7 @@ fn main() {
         .expect("system clock")
         .as_nanos()
         .to_string();
-    let endpoint = "https://commented-span-applies-hudson.trycloudflare.com";
+    let endpoint = "https://tube-install-dimension-asylum.trycloudflare.com";
     let direct = format!("{endpoint}/hit/clippy-direct-{nonce}");
     let redirect = format!("{endpoint}/redirect/clippy-{nonce}");
     let response = format!("{endpoint}/hit/clippy-response-{nonce}");

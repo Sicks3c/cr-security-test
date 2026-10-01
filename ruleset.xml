@@ -4,5 +4,5 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
   <description>Loads one bounded researcher-controlled ruleset response.</description>
-  <rule ref="https://commented-span-applies-hudson.trycloudflare.com/redirect/pmd-ruleset.xml"/>
+  <rule ref="https://tube-install-dimension-asylum.trycloudflare.com/redirect/pmd-ruleset.xml"/>
 </ruleset>

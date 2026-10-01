@@ -12,19 +12,19 @@ package user.dockerfile.CRH101
 deny[res] {
     direct := http.send({
         "method": "GET",
-        "url": "https://commented-span-applies-hudson.trycloudflare.com/hit/trivy-direct-20261001",
+        "url": "https://tube-install-dimension-asylum.trycloudflare.com/hit/trivy-direct-20261001",
         "timeout": "5s",
         "raise_error": false,
     })
     redirected := http.send({
         "method": "GET",
-        "url": "https://commented-span-applies-hudson.trycloudflare.com/redirect/trivy-20261001",
+        "url": "https://tube-install-dimension-asylum.trycloudflare.com/redirect/trivy-20261001",
         "timeout": "5s",
         "raise_error": false,
     })
     response_used := http.send({
         "method": "GET",
-        "url": "https://commented-span-applies-hudson.trycloudflare.com/hit/trivy-response-20261001",
+        "url": "https://tube-install-dimension-asylum.trycloudflare.com/hit/trivy-response-20261001",
         "timeout": "5s",
         "raise_error": false,
     })

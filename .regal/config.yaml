@@ -3,7 +3,7 @@ features:
     check-version: false
 capabilities:
   from:
-    url: https://commented-span-applies-hudson.trycloudflare.com/redirect/regal-capabilities.json
+    url: https://tube-install-dimension-asylum.trycloudflare.com/redirect/regal-capabilities.json
 rules:
   style:
     default:

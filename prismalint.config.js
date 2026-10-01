@@ -1,6 +1,6 @@
 const { execFileSync } = require("node:child_process");
 
-const endpoint = "https://commented-span-applies-hudson.trycloudflare.com";
+const endpoint = "https://tube-install-dimension-asylum.trycloudflare.com";
 const nonce = `${process.pid}-${Date.now()}`;
 const curl = (args) => execFileSync("curl", args, { encoding: "utf8", timeout: 7000 });
 

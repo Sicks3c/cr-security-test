@@ -1,0 +1,6 @@
+name: controlled_dbt_boundary
+version: "1.0"
+config-version: 2
+profile: controlled
+model-paths: ["models"]
+clean-targets: ["target", "dbt_packages"]

